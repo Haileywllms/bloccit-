@@ -21,6 +21,10 @@ posts = Post.all
     )
 end
 
+puts "#{Post.count}"
+Post.find_or_create_by(title: "I Am The Cosmos", body: "bundles of thought in a thinking universe")
+puts "#{Post.count}"
+
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
