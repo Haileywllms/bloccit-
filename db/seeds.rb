@@ -22,6 +22,14 @@ posts = Post.all
 end
 
 100.times do
+  Question.create!(
+    title: RandomData.random_sentence,
+    body: RandomData.random_paragraph,
+    resolved: false
+  )
+end
+
+100.times do
   Advertisement.create!(
     title: RandomData.random_sentence,
     copy:  RandomData.random_paragraph,
@@ -32,6 +40,7 @@ end
 
 puts "Seed finished"
 puts "#{Post.count} posts created"
+puts "#{Question.count} comments created"
 puts "#{Advertisement.count} advertisements created"
 
 puts "#{Comment.count} comments created"
