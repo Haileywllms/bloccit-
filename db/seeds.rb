@@ -18,6 +18,16 @@ require 'random_data'
   end
   posts = Post.all
 
+  50.times do
+    Sponsored_post.create!(
+      topic: topics.sample,
+      title: RandomData.random_sentence,
+      body:  RandomData.random_paragraph,
+      price: RandomData.random_integer
+      )
+    end
+  posts = SponsoredPost.all
+
 # Create Comments
   100.times do
     Comment.create!(
