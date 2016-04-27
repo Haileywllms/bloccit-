@@ -31,3 +31,4 @@ end
  gem 'turbolinks'
 
  gem 'bootstrap-sass'
+ gem 'bcrypt'
