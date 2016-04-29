@@ -1,24 +1,43 @@
-<br>
- <div class="jumbotron">
-   <h1>Bloccit</h1>
-   <p>Bloccit is a resource for sharing links with your friends!</p>
-   <p>
-     <%= link_to "Sign In", new_session_path %> or
-     <%= link_to "Sign Up", new_user_path, class: 'btn btn-primary' %> today!
-   </p>
- </div>
+<!DOCTYPE html>
+  <html>
+  <head>
+    <title>BloccitRebuild</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container">
+      <ul class="nav nav-tabs">
+        <li><%= link_to "Bloccit", root_path %></li>
+        <li><%= link_to "Topics", topics_path %></li>
+        <li><%= link_to "About", about_path %></li>
 
- <div class="row">
-   <div class="col-md-4">
-     <h2>Solves world hunger</h2>
-     <p>Bloccit will deliver food and water to those in need, all over the world.</p>
-   </div>
-   <div class="col-md-4">
-     <h2>Eliminates poverty</h2>
-     <p>Bloccit will deliver money and education to those in need, all over the world.</p>
-   </div>
-   <div class="col-md-4">
-     <h2>Makes you better looking</h2>
-     <p>Bloccit will make you better looking: it's scientifically proven to make men look like Ryan Gosling and women look like Shakira.</p>
-   </div>
- </div>
+        <div class="pull-right user-info">
+          <%= link_to "Sign Up", new_user_path %>
+        </div>
+      </ul>
+
+      <% if flash[:notice] %>
+          <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash[:notice] %>
+          </div>
+      <% elsif flash.now[:alert] %>
+          <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash.now[:alert] %>
+          </div>
+      <% elsif flash[:alert] %>
+          <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash[:alert] %>
+          </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
+
+  </body>
+  </html>
