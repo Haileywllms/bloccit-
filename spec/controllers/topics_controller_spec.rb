@@ -148,9 +148,15 @@ RSpec.describe TopicsController, type: :controller do
     end
   end
 
-  context "admin user" do
+    context "admin user" do
     before do
       user = User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld", role: :admin)
+      create_session(user)
+    end
+
+    context "moderator user" do
+    before do
+      user = User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld", role: :moderator)
       create_session(user)
     end
 
