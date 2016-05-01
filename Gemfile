@@ -32,3 +32,5 @@ end
 
  gem 'bootstrap-sass'
  gem 'bcrypt'
+ gem 'therubyracer'
+ gem 'execjs'
