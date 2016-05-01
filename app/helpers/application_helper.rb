@@ -3,6 +3,12 @@ module ApplicationHelper
     css_class = 'form-group'
     css_class << ' has-error' if errors.any?
     content_tag :div, capture(&block), class: css_class
+
+    if errors.any?
+      content_tag :div, capture(&bloc), class: 'form-group has-error'
+    else
+      content_tag :div, capture(&bloc), class: 'form-group'
+    end
   end
 
   def avatar_url(user)
