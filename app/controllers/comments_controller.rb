@@ -4,6 +4,15 @@ class CommentsController < ApplicationController
 
    def create
 
+     id = params[:post_id] || params[:topic_id]
+     if params[:post_id]
+       @parent = Post.find id
+     elseif params[:topic_id]
+       @parent = Topic.find id
+     end
+
+     @comment = @parent.comments.find params[:id]
+     @comment.save
      @post = Post.find(params[:post_id])
      comment = @post.comments.new(comment_params)
      comment.user = current_user
@@ -20,7 +29,11 @@ class CommentsController < ApplicationController
    end
 
    def destroy
-      @post = Post.find(params[:post_id])
+
+     @parent = parms[:post_id] || params[:topic_id]
+     @comment = @parent.comments.new comment_params
+     @comment.destroy
+     @post = Post.find(params[:post_id])
       comment = @post.comments.find(params[:id])
 
       if comment.destroy
