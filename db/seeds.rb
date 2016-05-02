@@ -33,6 +33,7 @@ require 'random_data'
 
 100.times do
   Comment.create!(
+    user: users.sample,
     post: posts.sample,
     body: RandomData.random_paragraph
     )
@@ -44,7 +45,7 @@ admin = User.create!(
    password: 'helloworld',
    role:     'admin'
  )
- 
+
  member = User.create!(
    name:     'Member User',
    email:    'member@example.com',

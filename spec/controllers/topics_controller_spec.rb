@@ -126,7 +126,7 @@ RSpec.describe TopicsController, type: :controller do
     describe "GET edit" do
       it "returns http redirect" do
         get :edit, {id: my_topic.id}
-        expect(response).to redirect_to(topics_path)
+        expect(response).to be_success
       end
     end
 
@@ -148,15 +148,9 @@ RSpec.describe TopicsController, type: :controller do
     end
   end
 
-    context "admin user" do
+  context "admin user" do
     before do
       user = User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld", role: :admin)
-      create_session(user)
-    end
-
-    context "moderator user" do
-    before do
-      user = User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld", role: :moderator)
       create_session(user)
     end
 
@@ -279,4 +273,3 @@ RSpec.describe TopicsController, type: :controller do
     end
   end
 end
-Status API Training Shop Blog About

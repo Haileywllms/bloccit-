@@ -90,7 +90,7 @@ RSpec.describe User, type: :model do
       end
 
       it "returns true for #moderator?" do
-        expect(user.member?).to be_truthy
+        expect(user.moderator?).to be_truthy
       end
     end
   end
