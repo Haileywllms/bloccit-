@@ -41,7 +41,7 @@ class Post < ActiveRecord::Base
 
    def create_vote
      user.votes.create[value: 1, post: self]
-   end 
+   end
 =======
     new_rank = points + age_in_days
     update_attribute(:rank, new_rank)
