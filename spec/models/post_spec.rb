@@ -12,9 +12,8 @@ RSpec.describe Post, type: :model do
   it { is_expected.to have_many(:labelings) }
   it { is_expected.to have_many(:labels).through(:labelings) }
 
-   it { is_expected.to have_many(:comments) }
+  it { is_expected.to have_many(:comments) }
    it { is_expected.to have_many(:votes) }
-   it { is_expected.to have_many(:favorites) }
 
   describe "Post" do
     it { is_expected.to belong_to(:topic) }
@@ -45,7 +44,6 @@ RSpec.describe Post, type: :model do
       @up_votes = post.votes.where(value: 1).count
       @down_votes = post.votes.where(value: -1).count
     end
-  end
 
 
     describe "#up_votes" do
@@ -73,7 +71,7 @@ RSpec.describe Post, type: :model do
       end
 
       it "calls #create_vote when a post is created" do
-        post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+        post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_sentence, body: RandomData.random_sentence, user: user)
         expect(post).to receive[:create_vote]
         post.save
       end
@@ -103,3 +101,4 @@ RSpec.describe Post, type: :model do
       end
     end
   end
+end
