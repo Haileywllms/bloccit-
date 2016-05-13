@@ -27,11 +27,11 @@ RSpec.describe TopicsController, type: :controller do
     end
 
     describe "GET show" do
-      it "redirects from private topics" do
-         get :show, {id: my_private_topic.id}
+      it "returns HTTP success" do
+        get :show, { id: my_topic.id }
 
-         expect(response).to redirect_to(new_session_path)
-       end
+        expect(response).to have_http_status(:success)
+      end
 
       it "renders :show" do
         get :show, { id: my_topic.id }

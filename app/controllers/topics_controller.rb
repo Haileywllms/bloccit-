@@ -25,9 +25,8 @@ class TopicsController < ApplicationController
 
     if @topic.save
       @topic.labels = Label.update_labels(params[:topic][:labels])
+      redirect_to @topic, notice: "Topic was saved successfully."
 
-      flash[:notice] = "Topic was saved successfully."
-      redirect_to @topic
     else
       flash.now[:alert] = "Error creating topic. Please try again."
       render :new
@@ -44,8 +43,8 @@ class TopicsController < ApplicationController
 
      if @topic.save
         @topic.labels = Label.update_labels(params[:topic][:labels])
-        flash[:notice] = "Topic was updated successfully."
-       redirect_to @topic
+        redirect_to @topic, notice: "Topic was updated."
+
      else
        flash.now[:alert] = "Error saving topic. Please try again."
        render :edit
@@ -70,14 +69,10 @@ class TopicsController < ApplicationController
     params.require(:topic).permit(:name, :description, :public)
   end
 
- def authorize_user
-   action = params['action']
-   if (action == "new" || action == "create" || action == "destroy") && !current_user.admin?
-     flash[:error] = "You must be an admin to do that."
-     redirect_to topics_path
-   elsif action == "update" && !(current_user.admin? || current_user.moderator?)
-     flash[:error] = "You must be an admin or moderator to do that."
-     redirect_to topics_path
+  def authorize_user
+     unless current_user.admin?
+       flash[:alert] = "You must be an admin to do that"
+       redirect_to topics_path
+     end
    end
  end
-end
